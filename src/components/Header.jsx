@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { observable, action } from "mobx";
-import { observer } from "mobx-react";
+// import { observable, action } from "mobx";
+// import { observer } from "mobx-react";
 import styled from "styled-components";
 import {
-  BrowserRouter as Router,
-  Switch,
+  // BrowserRouter as Router,
+  // Switch,
   Link,
-  Redirect,
+  // Redirect,
 } from "react-router-dom";
 
 function Header() {
@@ -16,11 +16,11 @@ function Header() {
     if (currentUser) setIsLogged(true);
     else setIsLogged(false);
   }, []);
-  const handleDirect = (route) => {
-    console.log("handleDirect -> window", window);
-    // return window.history.go(route);
-    return <Redirect to={route} />;
-  };
+  // const handleDirect = (route) => {
+  //   console.log("handleDirect -> window", window);
+  //   // return window.history.go(route);
+  //   return <Redirect to={route} />;
+  // };
   const logout = () => {
     localStorage.removeItem("currentUser");
     setIsLogged(false);

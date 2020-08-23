@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { observable, action } from "mobx";
-import { observer } from "mobx-react";
+// import { observable, action } from "mobx";
+// import { observer } from "mobx-react";
 import styled from "styled-components";
 
 function Login() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
-  function handleSubmit(event) {
+  function handleSubmit() {
     const user = JSON.parse(localStorage.getItem("registerUser"));
     if (user) {
-      if (user.userName === userName && user.password) {
+      if (user.userName === userName && user.password === password) {
         localStorage.setItem("currentUser", JSON.stringify(user));
         return window.history.back();
       }

@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { observable, action } from "mobx";
-import { observer } from "mobx-react";
+import React from "react";
+// import { observable, action } from "mobx";
+// import { observer } from "mobx-react";
 import styled from "styled-components";
 
 import Header from "../components/Header";
@@ -31,7 +31,7 @@ function Home() {
   );
 }
 
-export default observer(Home);
+export default Home;
 
 const Container = styled.div`
   width: 100%;
