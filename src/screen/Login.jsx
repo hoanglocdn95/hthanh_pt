@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-// import { observable, action } from "mobx";
-// import { observer } from "mobx-react";
 import styled from "styled-components";
 
 function Login() {
@@ -85,6 +83,9 @@ const FormContainer = styled.div`
   border: 4px solid white;
   padding: 8px 16px 16px;
   background: papayawhip;
+  &:hover {
+    border-color: gray;
+  }
 `;
 
 const Label = styled.label`

@@ -13,6 +13,11 @@ module.exports = {
   plugins: [new webpack.HotModuleReplacementPlugin()],
   resolve: {
     extensions: [".js", ".jsx"],
+    alias: {
+      components: path.resolve(__dirname, "./src/components"),
+      assets: path.resolve(__dirname, "./src/assets"),
+      screen: path.resolve(__dirname, "./src/screen"),
+    },
   },
   module: {
     rules: [
@@ -26,5 +31,8 @@ module.exports = {
         use: ["file-loader"],
       },
     ],
+  },
+  devServer: {
+    historyApiFallback: true,
   },
 };

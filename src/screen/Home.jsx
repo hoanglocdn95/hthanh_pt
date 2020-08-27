@@ -3,11 +3,11 @@ import React from "react";
 // import { observer } from "mobx-react";
 import styled from "styled-components";
 
-import Header from "../components/Header";
+import Header from "components/Header/index";
 
-import Banner1 from "../assets/banner1.png";
-import Banner2 from "../assets/banner2.jpg";
-import Banner3 from "../assets/banner3.jpg";
+import Banner1 from "assets/banner1.png";
+import Banner2 from "assets/banner2.jpg";
+import Banner3 from "assets/banner3.jpg";
 
 function Home() {
   return (
