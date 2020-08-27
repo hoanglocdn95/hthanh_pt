@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as SC from "./style";
+import { RouterConstant } from "constants";
 
 function Header() {
   const [isLogged, setIsLogged] = useState(false);
@@ -23,8 +24,8 @@ function Header() {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <SC.LinkRoute to="/register">Register</SC.LinkRoute>
-            <SC.LinkRoute to="/login">Login</SC.LinkRoute>
+            <SC.LinkRoute to={RouterConstant.Register}>Register</SC.LinkRoute>
+            <SC.LinkRoute to={RouterConstant.Login}>Login</SC.LinkRoute>
           </React.Fragment>
         )}
       </SC.Right>
