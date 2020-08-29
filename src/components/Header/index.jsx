@@ -19,7 +19,9 @@ function Header() {
       <SC.Right>
         {isLogged ? (
           <React.Fragment>
-            <SC.Name>Hello {currentUser.userName} !!!</SC.Name>
+            <SC.Name to={RouterConstant.PersonalTrainer}>
+              Hello {currentUser.userName} !!!
+            </SC.Name>
             <SC.ItemRight onClick={() => logout()}>Logout</SC.ItemRight>
           </React.Fragment>
         ) : (

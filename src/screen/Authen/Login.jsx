@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import * as SC from "./style";
+import { useHistory } from "react-router-dom";
+import { RouterConstant } from "constants";
 
 function Login() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const history = useHistory();
 
   function handleSubmit() {
     const user = JSON.parse(localStorage.getItem("registerUser"));
     if (user) {
       if (user.userName === userName && user.password === password) {
         localStorage.setItem("currentUser", JSON.stringify(user));
-        return window.history.back();
+        return history.push(RouterConstant.PersonalTrainer);
       }
     }
     return alert("user name or password is wrong!!!");
