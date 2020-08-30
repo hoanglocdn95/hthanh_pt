@@ -55,9 +55,16 @@ export const LinkRoute = styled(Link)`
   }
 `;
 
-export const Name = styled.p`
+export const Name = styled(Link)`
+  text-decoration: none;
+  height: fit-content;
+  margin-right: 16px;
+  color: orange;
   font-weight: 700;
   font-size: 20px;
-  color: blue;
-  margin-right: 16px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  &:hover {
+    color: gray;
+  }
 `;

@@ -1,9 +1,5 @@
 import React from "react";
-// import { observable, action } from "mobx";
-// import { observer } from "mobx-react";
-import styled from "styled-components";
-
-import Header from "components/Header/index";
+import DefaultLayout from "components/DefaultLayout/index";
 
 import Banner1 from "assets/banner1.png";
 import Banner2 from "assets/banner2.jpg";
@@ -12,9 +8,8 @@ import Banner3 from "assets/banner3.jpg";
 import * as SC from "./style";
 
 function Home() {
-  return (
-    <SC.Container>
-      <Header />
+  const Body = () => {
+    return (
       <SC.Body>
         <SC.Section>
           <SC.Title>Personal Trainer!</SC.Title>
@@ -29,7 +24,12 @@ function Home() {
           <img src={Banner3} alt="banner3" />
         </SC.Section>
       </SC.Body>
-    </SC.Container>
+    );
+  };
+  return (
+    <DefaultLayout>
+      <Body />
+    </DefaultLayout>
   );
 }
 
