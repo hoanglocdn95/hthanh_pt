@@ -12,7 +12,7 @@ module.exports = {
   },
   plugins: [new webpack.HotModuleReplacementPlugin()],
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: [".js", ".jsx", ".css"],
     alias: {
       components: path.resolve(__dirname, "./src/components"),
       assets: path.resolve(__dirname, "./src/assets"),
@@ -30,6 +30,12 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: ["file-loader"],
+      },
+      {
+        // test: /\.css$/i,
+        // use: ["style-loader", "css-loader"],
+        test: /\.css$/i,
+        loader: "style-loader!css-loader",
       },
     ],
   },

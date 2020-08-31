@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import * as SC from "./style";
 import DefaultLayout from "components/DefaultLayout/index";
+import Avatar from "assets/avatar.png";
+import Calendar from "react-calendar";
+// import "react-calendar/dist/Calendar.css";
 
 const fakeData = [
   {
@@ -15,9 +18,14 @@ const fakeData = [
     title: "Phone number",
     value: "5425425454",
   },
+  {
+    title: "Certification",
+    value: "Personal Trainer Certified",
+  },
 ];
 
 function PersonalTrainer() {
+  const [dateValue, setDateValue] = useState(new Date());
   const renderInfor = (data) => {
     return data.map((item, index) => {
       return (
@@ -32,10 +40,13 @@ function PersonalTrainer() {
     <DefaultLayout>
       <SC.Container>
         <SC.Left>
-          <SC.Avatar />
+          <SC.Avatar src={Avatar} alt="" />
           <SC.ProfileContainer>{renderInfor(fakeData)}</SC.ProfileContainer>
         </SC.Left>
-        <SC.Right></SC.Right>
+        <SC.Right>
+          <SC.HeaderRight>Time Sheet</SC.HeaderRight>
+          <Calendar onChange={(e) => setDateValue(e)} value={dateValue} />
+        </SC.Right>
       </SC.Container>
     </DefaultLayout>
   );
