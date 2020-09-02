@@ -32,6 +32,7 @@ export const ProfileContainer = styled.div`
 export const Right = styled.div`
   width: 70%;
   padding: 16px;
+  padding-bottom: 0;
 `;
 
 export const Line = styled.div`
