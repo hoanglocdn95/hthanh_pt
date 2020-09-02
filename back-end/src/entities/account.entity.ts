@@ -25,8 +25,8 @@ export class AccountEntity extends BaseEntity {
   password: string;
 
   @Column({ type: 'json', nullable: true })
-  certification: string;
+  certification: string[];
 
   @Column({ type: 'json', name: 'timesheet_available', nullable: true })
-  timesheetAvailable: string;
+  timesheetAvailable: string[];
 }
