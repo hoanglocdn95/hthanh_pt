@@ -1,6 +1,7 @@
 import { Exclude, Expose } from 'class-transformer';
 
 import { BaseDTO } from './base.dto';
+import { RoleEnum } from 'src/enum/account.enum';
 
 @Exclude()
 export class AccountDTO extends BaseDTO {
@@ -18,4 +19,7 @@ export class AccountDTO extends BaseDTO {
 
   @Expose()
   readonly timesheetAvailable: string[];
+
+  @Expose()
+  readonly role: RoleEnum;
 }
