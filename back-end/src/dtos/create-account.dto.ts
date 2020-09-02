@@ -1,8 +1,18 @@
-import { IsNotEmpty, IsString, MaxLength, IsOptional, IsArray, ArrayMinSize, ArrayMaxSize } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsString,
+  MaxLength,
+  IsOptional,
+  IsArray,
+  ArrayMinSize,
+  ArrayMaxSize,
+  IsIn,
+} from 'class-validator';
 import { Transform } from 'class-transformer';
 
 import { EntityConstant } from 'src/constants/entity.constant';
 import { appEncode } from 'src/common/encrypt';
+import { Roles, RoleEnum } from 'src/enum/account.enum';
 
 export class CreateAccountDTO {
   @IsNotEmpty()
@@ -37,4 +47,8 @@ export class CreateAccountDTO {
   @ArrayMinSize(EntityConstant.ArrayMinSize)
   @ArrayMaxSize(EntityConstant.ArrayMaxSize)
   readonly timesheetAvailable: string[];
+
+  @IsNotEmpty()
+  @IsIn(Roles)
+  readonly role: RoleEnum;
 }
