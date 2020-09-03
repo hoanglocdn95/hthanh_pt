@@ -13,11 +13,14 @@ export const Left = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  border: 1px solid orange;
+  box-shadow: 4px 4px 2px orange;
+  border-radius: 3px;
 `;
 
 export const Avatar = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 150px;
+  height: 150px;
   border-radius: 999px;
   background: transparent;
   margin: 0 0 16px;
@@ -38,7 +41,8 @@ export const Right = styled.div`
 export const Line = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
+  font-size: 18px;
 `;
 
 export const Title = styled.p`
@@ -51,11 +55,28 @@ export const Value = styled.p`
   width: 60%;
 `;
 
-export const HeaderRight = styled.h1`
-  /* text-align: right; */
-  font-weight: bold;
+export const FooterLeft = styled.div``;
+
+export const Button = styled.button`
+  margin: 12px auto 0;
+  border: 3px solid orange;
+  border-radius: 999px;
   color: orange;
+  font-weight: bold;
+  font-size: 18px;
+  background: white;
+  padding: 6px 24px;
+`;
+
+export const HeaderRight = styled.h1`
+  font-weight: bold;
   text-align: center;
-  margin: 0 0 16px;
-  text-decoration: underline;
+  margin: 0 auto 16px;
+  background: -webkit-linear-gradient(orange, papayawhip);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-bottom: 2px solid orange;
+  width: fit-content;
+  text-transform: uppercase;
+  padding: 0 8px;
 `;

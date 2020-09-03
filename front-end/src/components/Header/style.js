@@ -16,6 +16,10 @@ export const Logo = styled.p`
   margin: 0;
   padding: 8px;
   font-size: 30px;
+  background: -webkit-linear-gradient(orange, papayawhip);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  width: fit-content;
 `;
 export const Right = styled.div`
   display: flex;
