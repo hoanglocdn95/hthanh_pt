@@ -1,31 +1,32 @@
 import React, { useState } from "react";
+import { observer } from "mobx-react";
 import * as SC from "./style";
 import DefaultLayout from "components/DefaultLayout/index";
+import Calendar from "components/Calendar/index";
+import UserStore from "stores/UserStore";
 import Avatar from "assets/avatar.png";
-import Calendar from "react-calendar";
-// import "react-calendar/dist/Calendar.css";
-
-const fakeData = [
-  {
-    title: "Name",
-    value: "Huu Thanh",
-  },
-  {
-    title: "Address",
-    value: "16 LTK",
-  },
-  {
-    title: "Phone number",
-    value: "5425425454",
-  },
-  {
-    title: "Certification",
-    value: "Personal Trainer Certified",
-  },
-];
 
 function PersonalTrainer() {
-  const [dateValue, setDateValue] = useState(new Date());
+  const { name, address, phoneNumber, certification } = UserStore;
+  const fakeData = [
+    {
+      title: "Name",
+      value: name,
+    },
+    {
+      title: "Address",
+      value: address,
+    },
+    {
+      title: "Phone number",
+      value: phoneNumber,
+    },
+    {
+      title: "Certification",
+      value: certification,
+    },
+  ];
+
   const renderInfor = (data) => {
     return data.map((item, index) => {
       return (
@@ -45,11 +46,11 @@ function PersonalTrainer() {
         </SC.Left>
         <SC.Right>
           <SC.HeaderRight>Time Sheet</SC.HeaderRight>
-          <Calendar onChange={(e) => setDateValue(e)} value={dateValue} />
+          <Calendar />
         </SC.Right>
       </SC.Container>
     </DefaultLayout>
   );
 }
 
-export default PersonalTrainer;
+export default observer(PersonalTrainer);

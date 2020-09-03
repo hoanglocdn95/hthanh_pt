@@ -18,6 +18,7 @@ module.exports = {
       assets: path.resolve(__dirname, "./src/assets"),
       screen: path.resolve(__dirname, "./src/screen"),
       constants: path.resolve(__dirname, "./src/constants"),
+      stores: path.resolve(__dirname, "./src/stores"),
     },
   },
   module: {
