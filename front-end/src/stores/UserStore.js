@@ -1,6 +1,6 @@
 import { observable, computed, action } from "mobx";
 
-export default class UserStore {
+class UserStore {
   @observable name = "Nguyen Huu Thanh";
   @observable username = "cun";
   @observable phoneNumber = "32352523535";
@@ -18,3 +18,6 @@ export default class UserStore {
   //   remove this[type];
   // }
 }
+
+const userStore = new UserStore();
+export default userStore;

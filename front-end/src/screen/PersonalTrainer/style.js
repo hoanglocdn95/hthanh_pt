@@ -43,10 +43,12 @@ export const Line = styled.div`
 
 export const Title = styled.p`
   font-weight: bold;
+  width: 40%;
 `;
 
 export const Value = styled.p`
   text-align: right;
+  width: 60%;
 `;
 
 export const HeaderRight = styled.h1`

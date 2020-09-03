@@ -7,7 +7,6 @@ import UserStore from "stores/UserStore";
 import Avatar from "assets/avatar.png";
 
 function PersonalTrainer() {
-  const [infoData, setInfoData] = useState([]);
   const { name, address, phoneNumber, certification } = UserStore;
   const fakeData = [
     {
