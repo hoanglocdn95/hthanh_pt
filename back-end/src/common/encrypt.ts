@@ -1,4 +1,5 @@
 import { createCipheriv, createDecipheriv } from 'crypto';
+import * as jwt from 'jsonwebtoken';
 
 export const appEncode = text => {
   const key = Buffer.from(process.env.ENCODE_KEY, 'hex');
@@ -17,4 +18,13 @@ export const appDecode = text => {
   let decrypted = decipher.update(encryptedText);
   decrypted = Buffer.concat([decrypted, decipher.final()]);
   return decrypted.toString();
+};
+
+export const jwtSign = data => {
+  return jwt.sign({ data }, process.env.JWT_SECRET, { expiresIn: '1d' });
+}
+;
+
+export const jwtVerify = token => {
+  return jwt.verify(token, process.env.JWT_SECRET);
 };

@@ -1,4 +1,4 @@
-import { Entity, Column, OneToMany } from 'typeorm';
+import { Entity, Column, OneToMany, Unique } from 'typeorm';
 
 import { BaseEntity } from './base.entity';
 import { ScheduleEntity } from './schedule.entity';
@@ -6,6 +6,7 @@ import { EntityConstant } from 'src/constants/entity.constant';
 import { RoleEnum } from 'src/enum/account.enum';
 
 @Entity('accounts')
+@Unique(['username'])
 export class AccountEntity extends BaseEntity {
   @OneToMany(type => ScheduleEntity, schedule => schedule.user)
   userSchedules: ScheduleEntity[];
@@ -33,4 +34,7 @@ export class AccountEntity extends BaseEntity {
 
   @Column({ type: 'enum', enum: RoleEnum, nullable: false })
   role: RoleEnum;
+
+  @Column({ type: 'varchar', length: EntityConstant.ShortLength, nullable: true })
+  phone: string;
 }
