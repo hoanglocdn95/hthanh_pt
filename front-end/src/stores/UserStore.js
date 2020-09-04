@@ -1,18 +1,24 @@
 import { observable, computed, action } from "mobx";
 
 class UserStore {
-  @observable name = "Nguyen Huu Thanh";
+  @observable infoUser = {
+    name: "Nguyen Huu Thanh",
+    phoneNumber: "32352523535",
+    certification: "Personal Trainer Certified",
+    address: "16 Ly Thuong Kiet",
+  };
   @observable username = "cun";
-  @observable phoneNumber = "32352523535";
-  @observable certification = "Personal Trainer Certified";
-  @observable address = "16 Ly Thuong Kiet";
   @observable role = "pt";
   @observable userId = "sgf782f";
-  @observable timesheetAvailable = [];
   @observable isEditing = false;
+  @observable timesheetAvailable = [];
 
-  @action updateProperty(type, data) {
-    return (this[type] = data);
+  @action updateTimeSheet(data) {
+    this.timesheetAvailable = data;
+  }
+
+  @action updateInfoUser(data) {
+    this.infoUser = data;
   }
 
   @action setIsEditing(isEditing) {

@@ -18,7 +18,7 @@
     "mobx",
     "starter-kit"
   ],
-  "author": "Michel Weststrate <mweststrate@gmail.com> (http://github.com/mweststrate)",
+  "author": "unknown",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mobxjs/mobx/issues"
@@ -40,7 +40,6 @@
     "axios": "^0.20.0",
     "css-loader": "^4.2.2",
     "final-form": "^4.20.1",
-    "formik": "^2.1.5",
     "mobx": "^5.15.6",
     "mobx-react": "^5.4.4",
     "mobx-react-devtools": "^6.1.1",
