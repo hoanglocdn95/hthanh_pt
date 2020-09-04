@@ -32,7 +32,7 @@ export class CreateAccountDTO {
 
   @IsNotEmpty()
   @IsString()
-  @Transform(value => appEncode(value))
+  @Transform(value => value && appEncode(value))
   @MaxLength(EntityConstant.ShortLength)
   readonly password: string;
 
