@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 
 import { AccountEntity } from 'src/entities/account.entity';
 import { CreateAccountDTO } from 'src/dtos/create-account.dto';
+import { RequestLoginDTO } from 'src/dtos/request-login.dto';
 
 @Injectable()
 export class AccountService {
@@ -12,7 +13,8 @@ export class AccountService {
     private accountRepo: Repository<AccountEntity>,
   ) {}
   findOne(id: string): Promise<AccountEntity> {
-    return this.accountRepo.createQueryBuilder()
+    return this.accountRepo
+      .createQueryBuilder()
       .leftJoinAndSelect(
         'AccountEntity.userSchedules',
         'UserSchedule',
@@ -31,5 +33,17 @@ export class AccountService {
     const account = this.accountRepo.create(createAccountDTO);
 
     return this.accountRepo.save(account);
+  }
+
+  async login(requestLoginDTO: RequestLoginDTO): Promise<AccountEntity> {
+    const account = await this.accountRepo
+      .createQueryBuilder()
+      .where(
+        'AccountEntity.username = :username AND AccountEntity.password = :password',
+        requestLoginDTO,
+      )
+      .getOne();
+
+    return account;
   }
 }
