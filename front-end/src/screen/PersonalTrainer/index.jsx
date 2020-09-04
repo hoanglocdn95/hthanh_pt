@@ -1,33 +1,39 @@
-import React, { useState } from "react";
+import React from "react";
 import { observer } from "mobx-react";
 import * as SC from "./style";
 import DefaultLayout from "components/DefaultLayout/index";
 import Calendar from "components/Calendar/index";
 import UserStore from "stores/UserStore";
 import Avatar from "assets/avatar.png";
+import { Form, Field } from "react-final-form";
 
 function PersonalTrainer() {
   const { name, address, phoneNumber, certification } = UserStore;
+
   const fakeData = [
     {
       title: "Name",
       value: name,
+      nameField: "name",
     },
     {
       title: "Address",
       value: address,
+      nameField: "address",
     },
     {
       title: "Phone number",
       value: phoneNumber,
+      nameField: "phoneNumber",
     },
     {
       title: "Certification",
       value: certification,
+      nameField: "certification",
     },
   ];
 
-  const renderInfor = (data) => {
+  const renderInforText = (data) => {
     return data.map((item, index) => {
       return (
         <SC.Line key={index}>
@@ -37,12 +43,64 @@ function PersonalTrainer() {
       );
     });
   };
+
+  const onSubmit = (values) => {
+    window.alert(JSON.stringify(values, 0, 2));
+  };
+
+  const renderInforForm = (data) => {
+    return (
+      <Form
+        onSubmit={onSubmit}
+        initialValues={{ name, address, phoneNumber, certification }}
+        render={({ handleSubmit, form, submitting, pristine, values }) => (
+          <form onSubmit={handleSubmit}>
+            {data.map((item, index) => {
+              return (
+                <SC.Line key={index}>
+                  <SC.Title>{item.title}</SC.Title>
+                  <Field
+                    name={item.nameField}
+                    component="input"
+                    type="text"
+                    placeholder={item.title}
+                  />
+                </SC.Line>
+              );
+            })}
+            <div style={{ display: "flex" }}>
+              <SC.Button
+                type="submit"
+                onClick={() => UserStore.setIsEditing(false)}
+              >
+                Save
+              </SC.Button>
+              <SC.Button type="button" onClick={form.reset}>
+                Reset
+              </SC.Button>
+            </div>
+          </form>
+        )}
+      />
+    );
+  };
   return (
     <DefaultLayout>
       <SC.Container>
         <SC.Left>
           <SC.Avatar src={Avatar} alt="" />
-          <SC.ProfileContainer>{renderInfor(fakeData)}</SC.ProfileContainer>
+          <SC.ProfileContainer>
+            {UserStore.isEditing
+              ? renderInforForm(fakeData)
+              : renderInforText(fakeData)}
+          </SC.ProfileContainer>
+          <SC.FooterLeft>
+            {!UserStore.isEditing && (
+              <SC.Button onClick={() => UserStore.setIsEditing(true)}>
+                Edit
+              </SC.Button>
+            )}
+          </SC.FooterLeft>
         </SC.Left>
         <SC.Right>
           <SC.HeaderRight>Time Sheet</SC.HeaderRight>

@@ -9,14 +9,15 @@ class UserStore {
   @observable role = "pt";
   @observable userId = "sgf782f";
   @observable timesheetAvailable = [];
+  @observable isEditing = false;
 
   @action updateProperty(type, data) {
     return (this[type] = data);
   }
 
-  // @action addTodo(type) {
-  //   remove this[type];
-  // }
+  @action setIsEditing(isEditing) {
+    this.isEditing = isEditing;
+  }
 }
 
 const userStore = new UserStore();
