@@ -5,4 +5,6 @@ export const EntityConstant = {
   TimePrecision: 3,
   PasswordMaxLength: 30,
   PasswordMinLength: 6,
+  ArrayMinSize: 1,
+  ArrayMaxSize: 100,
 };

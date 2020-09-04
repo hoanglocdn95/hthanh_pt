@@ -3,6 +3,7 @@ import { Entity, Column, OneToMany } from 'typeorm';
 import { BaseEntity } from './base.entity';
 import { ScheduleEntity } from './schedule.entity';
 import { EntityConstant } from 'src/constants/entity.constant';
+import { RoleEnum } from 'src/enum/account.enum';
 
 @Entity('accounts')
 export class AccountEntity extends BaseEntity {
@@ -25,8 +26,11 @@ export class AccountEntity extends BaseEntity {
   password: string;
 
   @Column({ type: 'json', nullable: true })
-  certification: string;
+  certification: string[];
 
   @Column({ type: 'json', name: 'timesheet_available', nullable: true })
-  timesheetAvailable: string;
+  timesheetAvailable: string[];
+
+  @Column({ type: 'enum', enum: RoleEnum, nullable: false })
+  role: RoleEnum;
 }
