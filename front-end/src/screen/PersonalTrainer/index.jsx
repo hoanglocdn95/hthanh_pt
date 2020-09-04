@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import * as SC from "./style";
 import DefaultLayout from "components/DefaultLayout/index";
@@ -7,8 +7,14 @@ import UserStore from "stores/UserStore";
 import Avatar from "assets/avatar.png";
 import { Form, Field } from "react-final-form";
 
-function PersonalTrainer() {
-  const { name, address, phoneNumber, certification } = UserStore;
+const PersonalTrainer = observer(() => {
+  // useEffect(() => {
+  //   setDay(date.getDate());
+  //   setMonth(date.getMonth());
+  //   setYear(date.getFullYear());
+  //   setStartDay(getStartDayOfMonth(date));
+  // }, [date]);
+  const { name, address, phoneNumber, certification } = UserStore.infoUser;
 
   const fakeData = [
     {
@@ -45,7 +51,8 @@ function PersonalTrainer() {
   };
 
   const onSubmit = (values) => {
-    window.alert(JSON.stringify(values, 0, 2));
+    UserStore.setIsEditing(false);
+    UserStore.updateInfoUser(values);
   };
 
   const renderInforForm = (data) => {
@@ -69,12 +76,7 @@ function PersonalTrainer() {
               );
             })}
             <div style={{ display: "flex" }}>
-              <SC.Button
-                type="submit"
-                onClick={() => UserStore.setIsEditing(false)}
-              >
-                Save
-              </SC.Button>
+              <SC.Button type="submit">Save</SC.Button>
               <SC.Button type="button" onClick={form.reset}>
                 Reset
               </SC.Button>
@@ -109,6 +111,6 @@ function PersonalTrainer() {
       </SC.Container>
     </DefaultLayout>
   );
-}
+});
 
-export default observer(PersonalTrainer);
+export default PersonalTrainer;
