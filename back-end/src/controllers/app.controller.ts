@@ -1,18 +1,19 @@
 import {
   Controller,
-  Get,
   Post,
   Res,
   Body,
   HttpStatus,
   Req,
   BadRequestException,
+  Delete,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { plainToClass } from 'class-transformer';
-import { Response } from 'express';
+import { Response, Request } from 'express';
 
 import { AccountService } from 'src/services/account.service';
-import { RequestLoginDTO } from 'src/dtos/request-login.dto';
+import { RequestLoginLogoutDTO } from 'src/dtos/request-login.dto';
 import { AccountDTO } from 'src/dtos/account.dto';
 import { ErrorMessageConstant } from 'src/constants/error-message.constant';
 import { CreateAccountDTO } from 'src/dtos/create-account.dto';
@@ -24,9 +25,9 @@ export class AppController {
   @Post('/login')
   async login(
     @Res() res: Response,
-    @Body('login') requestLoginDTO: RequestLoginDTO,
+    @Body('login') requestLoginLogoutDTO: RequestLoginLogoutDTO,
   ) {
-    const account = await this.accountService.login(requestLoginDTO);
+    const account = await this.accountService.login(requestLoginLogoutDTO);
     if (!account) {
       throw new BadRequestException(ErrorMessageConstant.loginIncorrect);
     }
@@ -42,5 +43,13 @@ export class AppController {
     const account = await this.accountService.create(createAccountDTO);
 
     return res.status(HttpStatus.OK).json(plainToClass(AccountDTO, account));
+  }
+
+  @Delete('/logout')
+  async logout(@Res() res: Response, @Req() req: Request) {
+    if (!req.headers.authentization) { throw UnauthorizedException; }
+    const deletedAccount = await this.accountService.logout(req.headers.authentization);
+
+    return res.status(HttpStatus.OK).json(plainToClass(AccountDTO, deletedAccount));
   }
 }

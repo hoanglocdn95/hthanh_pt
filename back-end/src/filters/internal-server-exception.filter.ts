@@ -6,12 +6,14 @@ import {
   HttpException,
 } from '@nestjs/common';
 import { Response } from 'express';
+import { getRepository } from 'typeorm';
 
 import { ErrorMessageConstant } from 'src/constants/error-message.constant';
+import { AuthTokenEntity } from 'src/entities/auth-token.entity';
 
 @Catch()
 export class InternalServerExceptionFilter implements ExceptionFilter {
-  catch(exception: HttpException, context: ExecutionContext) {
+  async catch(exception: HttpException, context: ExecutionContext) {
     const ctx = context.switchToHttp();
     const response = ctx.getResponse<Response>();
 
@@ -46,8 +48,25 @@ export class InternalServerExceptionFilter implements ExceptionFilter {
       }
     }
 
-    return response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
-      errors: ErrorMessageConstant.internalServer,
-    });
+    switch (exception.name) {
+      case 'UnauthorizedException':
+        return response.status(HttpStatus.UNAUTHORIZED).json(ErrorMessageConstant.unauthorized);
+      case 'TokenExpiredError':
+        const authToken = await getRepository(AuthTokenEntity)
+          .createQueryBuilder()
+          .where(
+            'AuthTokenEntity.token = :token',
+            { token: ctx.getRequest().headers.authentization },
+          )
+          .getOne();
+        if (authToken) {
+          await getRepository(AuthTokenEntity).delete(authToken.id);
+        }
+        return response.status(HttpStatus.UNAUTHORIZED).json(ErrorMessageConstant.unauthorized);
+      default:
+        return response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+          errors: ErrorMessageConstant.internalServer,
+        });
+    }
   }
 }

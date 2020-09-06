@@ -1,8 +1,7 @@
-import { Exclude, Expose, Transform } from 'class-transformer';
+import { Exclude, Expose } from 'class-transformer';
 
 import { BaseDTO } from './base.dto';
 import { RoleEnum } from 'src/enum/account.enum';
-import { jwtSign } from 'src/common/encrypt';
 
 @Exclude()
 export class AccountDTO extends BaseDTO {
@@ -25,6 +24,5 @@ export class AccountDTO extends BaseDTO {
   readonly role: RoleEnum;
 
   @Expose()
-  @Transform((_, object) => jwtSign({ username: object.username, password: object.password }))
   readonly authentization: string;
 }
