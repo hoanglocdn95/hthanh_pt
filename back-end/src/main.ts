@@ -1,4 +1,8 @@
-import { ValidationPipe, ValidationError, BadRequestException } from '@nestjs/common';
+import {
+  ValidationPipe,
+  ValidationError,
+  BadRequestException,
+} from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import * as cors from 'cors';
 
@@ -13,7 +17,8 @@ async function bootstrap() {
     new ValidationPipe({
       whitelist: true,
       transform: true,
-      exceptionFactory: (errors: ValidationError[]) => new BadRequestException(errors),
+      exceptionFactory: (errors: ValidationError[]) =>
+        new BadRequestException(errors),
     }),
   );
   app.useGlobalFilters(
