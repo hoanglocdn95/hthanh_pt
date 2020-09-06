@@ -2,7 +2,7 @@ import { IsNotEmpty, IsString } from 'class-validator';
 import { Transform } from 'class-transformer';
 import { appEncode } from 'src/common/encrypt';
 
-export class RequestLoginDTO {
+export class RequestLoginLogoutDTO {
   @IsNotEmpty()
   @IsString()
   readonly username: string;

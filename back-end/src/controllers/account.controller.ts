@@ -1,8 +1,6 @@
 import {
   Controller,
-  Post,
   Res,
-  Body,
   HttpStatus,
   Get,
   Param,

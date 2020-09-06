@@ -2,6 +2,7 @@ import { Entity, Column, OneToMany, Unique } from 'typeorm';
 
 import { BaseEntity } from './base.entity';
 import { ScheduleEntity } from './schedule.entity';
+import { AuthTokenEntity } from './auth-token.entity';
 import { EntityConstant } from 'src/constants/entity.constant';
 import { RoleEnum } from 'src/enum/account.enum';
 
@@ -13,6 +14,9 @@ export class AccountEntity extends BaseEntity {
 
   @OneToMany(type => ScheduleEntity, schedule => schedule.pt)
   ptSchedules: ScheduleEntity[];
+
+  @OneToMany(type => AuthTokenEntity, authToken => authToken.account)
+  authTokens: AuthTokenEntity[];
 
   @Column({ type: 'varchar', length: EntityConstant.ShortLength, nullable: false })
   name: string;
