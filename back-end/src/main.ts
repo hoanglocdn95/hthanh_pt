@@ -1,5 +1,6 @@
 import { ValidationPipe, ValidationError, BadRequestException } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import * as cors from 'cors';
 
 import { AppModule } from './app.module';
 import { InternalServerExceptionFilter } from './filters/internal-server-exception.filter';
@@ -22,6 +23,7 @@ async function bootstrap() {
   );
   app.useGlobalGuards();
   app.useGlobalInterceptors();
+  app.use(cors());
   await app.listen(3000);
 }
 bootstrap();
