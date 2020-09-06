@@ -6,6 +6,9 @@ class UserServer {
   ReqLogin = (data, callBack) => {
     Server.POST("login", { login: data }, callBack);
   };
+  ReqGetInfo = (data, callBack) => {
+    Server.GET("accounts", data, callBack);
+  };
 }
 
 const userServer = new UserServer();

@@ -9,7 +9,8 @@ function Login() {
   const history = useHistory();
 
   const onSubmit = (values) => {
-    UserServer.ReqLogin(values, () => {
+    UserServer.ReqLogin(values, (result) => {
+      localStorage.setItem("currentUser", JSON.stringify(result.data));
       history.push(RouterConstant.PersonalTrainer);
     });
   };

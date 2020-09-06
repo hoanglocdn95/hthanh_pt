@@ -36,11 +36,20 @@ export const Day = styled.div`
   justify-content: center;
   cursor: pointer;
   border-radius: 999px;
+  position: relative;
 
   ${(props) =>
     props.isToday &&
     css`
-      border: 1px solid orange;
+      color: orange;
+      font-weight: bold;
+      ::after {
+        content: "today";
+        position: absolute;
+        bottom: 0;
+        font-size: 10px;
+        text-transform: uppercase;
+      }
     `}
 
   ${(props) =>

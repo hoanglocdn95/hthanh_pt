@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { observer } from "mobx-react";
+import { observer } from "mobx-react-lite";
 import * as SC from "./style";
 import DefaultLayout from "components/DefaultLayout/index";
 import Calendar from "components/Calendar/index";
@@ -7,10 +7,12 @@ import UserStore from "stores/UserStore";
 import Avatar from "assets/avatar.png";
 import { Form, Field } from "react-final-form";
 
-const PersonalTrainer = observer(() => {
+const PersonalTrainer = () => {
+  useEffect(() => {
+    UserStore.getInfoUser();
+  }, []);
   const { name, address, phoneNumber, certification } = UserStore.infoUser;
-
-  const fakeData = [
+  const dataUser = [
     {
       title: "Name",
       value: name,
@@ -87,8 +89,8 @@ const PersonalTrainer = observer(() => {
           <SC.Avatar src={Avatar} alt="" />
           <SC.ProfileContainer>
             {UserStore.isEditing
-              ? renderInforForm(fakeData)
-              : renderInforText(fakeData)}
+              ? renderInforForm(dataUser)
+              : renderInforText(dataUser)}
           </SC.ProfileContainer>
           <SC.FooterLeft>
             {!UserStore.isEditing && (
@@ -105,6 +107,6 @@ const PersonalTrainer = observer(() => {
       </SC.Container>
     </DefaultLayout>
   );
-});
+};
 
-export default PersonalTrainer;
+export default observer(PersonalTrainer);
