@@ -2,10 +2,18 @@ import axios from "axios";
 const APIUrl = "http://localhost:3000/";
 
 export const GET = (url, params, callBack) => {
-  axios
+  if (params.id) {
+    return axios
+      .get(`${APIUrl}${url}/${params.id}`, params.header)
+      .then((result) => {
+        callBack(result);
+      })
+      .catch((error) => console.log("GET -> error", error));
+  }
+  return axios
     .get(`${APIUrl}${url}`, params)
     .then((result) => {
-      callBack();
+      callBack(result);
     })
     .catch((error) => console.log("GET -> error", error));
 };
@@ -13,10 +21,7 @@ export const GET = (url, params, callBack) => {
 export const POST = (url, params, callBack) => {
   axios
     .post(`${APIUrl}${url}`, params)
-    .then((result) => {
-      localStorage.setItem("currentUser", JSON.stringify(result.data));
-      callBack();
-    })
+    .then((result) => callBack(result))
     .catch((error) => console.log("POST -> error", error));
 };
 

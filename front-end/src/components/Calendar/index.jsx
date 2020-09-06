@@ -48,21 +48,19 @@ function Calendar(props) {
             <strong>{d}</strong>
           </SC.Day>
         ))}
-        {Array(days[month] + (startDay - 1))
-          .fill(null)
-          .map((_, index) => {
-            const d = index - (startDay - 2);
-            return (
-              <SC.Day
-                key={index}
-                isToday={d === today.getDate()}
-                isSelected={d === day}
-                onClick={() => setDate(new Date(year, month, d))}
-              >
-                {d > 0 ? d : ""}
-              </SC.Day>
-            );
-          })}
+        {[...Array(days[month]).keys()].map((item, index) => {
+          const d = item - (startDay - 2);
+          return (
+            <SC.Day
+              key={index}
+              isToday={d === today.getDate() && month === today.getMonth()}
+              isSelected={d === day && month === date.getMonth()}
+              onClick={() => setDate(new Date(year, month, d))}
+            >
+              {d > 0 ? d : ""}
+            </SC.Day>
+          );
+        })}
       </SC.Body>
     </SC.Frame>
   );
