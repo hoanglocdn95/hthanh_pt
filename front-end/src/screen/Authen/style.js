@@ -32,7 +32,7 @@ export const Container = styled.div`
   align-items: center;
 `;
 
-export const FormContainer = styled.div`
+export const FormContainer = styled.form`
   width: 350px;
   display: flex;
   flex-direction: column;

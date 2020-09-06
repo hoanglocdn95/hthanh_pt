@@ -8,12 +8,6 @@ import Avatar from "assets/avatar.png";
 import { Form, Field } from "react-final-form";
 
 const PersonalTrainer = observer(() => {
-  // useEffect(() => {
-  //   setDay(date.getDate());
-  //   setMonth(date.getMonth());
-  //   setYear(date.getFullYear());
-  //   setStartDay(getStartDayOfMonth(date));
-  // }, [date]);
   const { name, address, phoneNumber, certification } = UserStore.infoUser;
 
   const fakeData = [

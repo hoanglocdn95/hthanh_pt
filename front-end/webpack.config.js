@@ -19,6 +19,7 @@ module.exports = {
       screen: path.resolve(__dirname, "./src/screen"),
       constants: path.resolve(__dirname, "./src/constants"),
       stores: path.resolve(__dirname, "./src/stores"),
+      services: path.resolve(__dirname, "./src/services"),
     },
   },
   module: {
@@ -33,8 +34,6 @@ module.exports = {
         use: ["file-loader"],
       },
       {
-        // test: /\.css$/i,
-        // use: ["style-loader", "css-loader"],
         test: /\.css$/i,
         loader: "style-loader!css-loader",
       },
@@ -42,5 +41,11 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
+    // proxy: [
+    //   {
+    //     context: ["/register", "/login"],
+    //     target: "http://localhost:3000",
+    //   },
+    // ],
   },
 };
